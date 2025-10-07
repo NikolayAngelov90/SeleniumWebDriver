@@ -16,11 +16,12 @@ namespace TestProject1
         IWebElement calcBtn;
         IWebElement resetBtn;
         IWebElement divResult;
+        ChromeOptions options;
 
         [OneTimeSetUp]
         public void SetUp()
         {
-            ChromeOptions options = new ChromeOptions();
+            options = new ChromeOptions();
             // Ensure Chrome runs in headless mode
             options.AddArguments("headless");
             // Bypass OS security model
@@ -35,8 +36,17 @@ namespace TestProject1
             options.AddArguments("disable-extensions");
             // Remote debugging port
             options.AddArguments("remote-debugging-port=9222");
-
             driver = new ChromeDriver(options);
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Url = "https://calculatorhtml.onrender.com/";
+
+            textBoxFirstNum = driver.FindElement(By.Id("number1"));
+            dropDownOperation = driver.FindElement(By.Id("operation"));
+            textBoxSecondNum = driver.FindElement(By.Id("number2"));
+            calcBtn = driver.FindElement(By.Id("calcButton"));
+            resetBtn = driver.FindElement(By.Id("resetButton"));
+            divResult = driver.FindElement(By.Id("result"));
         }
 
         [OneTimeTearDown]
