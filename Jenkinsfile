@@ -14,17 +14,17 @@ pipeline {
         }
         stage('Run Project1 Tests') {
             steps {
-                bat 'dotnet test Project1 --no-build --verbosity normal'
+                bat 'dotnet test TestProject1 --no-build --verbosity normal'
             }
         }
         stage('Run Project2 Tests') {
             steps {
-                bat 'dotnet test Project2 --no-build --verbosity normal'
+                bat 'dotnet test TestProject2 --no-build --verbosity normal'
             }
         }
         stage('Run Project3 Tests') {
             steps {
-                bat 'dotnet test Project3 --no-build --verbosity normal'
+                bat 'dotnet test TestProject3 --no-build --verbosity normal'
             }
         }
     }
